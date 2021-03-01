@@ -21,6 +21,7 @@ pipeline{
   stages{
     stage('Version'){
       steps{
+        sh "echo ${BRANCH_NAME}"
         sh "sed -i 's/build_number/${BUILD_NUMBER}/g' web/routes.py"
         sh 'grep ${BUILD_NUMBER} web/routes.py'
       }
@@ -62,16 +63,15 @@ pipeline{
     }
     stage ('Publish') {
       steps {
-        script {
-          withDockerRegistry(credentialsId: 'ido-chatapp', url: 'https://gcr./ido-chatapp/chatapp') {
-            docker.withRegistry('https://gcr.io', 'ido-chatapp') {
+        script {          
+            docker.withRegistry('https://gcr.io', 'gcr:ido-chatapp') {
               if ("${env.BRANCH_NAME}" =~ 'dev') {
                 img.push("dev-${GIT_COMMIT}") 
               }
               else if ("${env.BRANCH_NAME}" =~ 'staging') {
                 img.push("staging-${GIT_COMMIT}") 
               }
-              else if ("${env.BRANCH_NAME}" =~ 'master') {
+              else if ("${env.BRANCH_NAME}" =~ 'main') {
                 img.push("1.0.${BUILD_NUMBER}") 
               }           
             }
@@ -80,4 +80,3 @@ pipeline{
       }
     }
   }
-}
