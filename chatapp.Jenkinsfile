@@ -63,7 +63,7 @@ pipeline{
     stage ('Publish') {
       steps {
         script {
-          docker.withRegistry('https://gcr.io', 'gcr:devel-final') {
+          docker.withRegistry('https://gcr.io', 'gcr:ido-chatapp') {
             if ("${env.BRANCH_NAME}" =~ 'dev') {
               img.push("dev-${GIT_COMMIT}") 
             }
