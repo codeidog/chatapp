@@ -2,7 +2,7 @@ pipeline{
   agent any
 
   environment {
-    REPO = 'gcr.io/crafty-willow-301509/chatapp'
+    REPO = 'gcr.io/ido-chatapp/chatapp'
     RETRIES = 20
     ADDR = 'localhost'
     PORT = 9000
@@ -49,7 +49,7 @@ pipeline{
         }
         stage('E2E') {
           steps {
-            sh './tests.sh ${RETRIES} ${ADDR} ${PORT}'
+            sh './tests.sh ${RETRIES} ${ADDR} ${PORT} f'
           }
           post {
             always{
