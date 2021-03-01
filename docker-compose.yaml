@@ -20,7 +20,7 @@ services:
       dockerfile: chat.Dockerfile
       context: .
     container_name: app
-    image: ${REPO} 
+    image: app:0.1
     depends_on:
     - wait_db
 
