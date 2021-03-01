@@ -63,7 +63,7 @@ pipeline{
     stage ('Publish') {
       steps {
         script {
-          withDockerRegistry(credentialsId: 'gcr:ido-chatapp', url: 'gcr.io/ido-chatapp/chatapp') {
+          withDockerRegistry(credentialsId: 'gcr:ido-chatapp', url: 'https://gcr./ido-chatapp/chatapp') {
             docker.withRegistry('https://gcr.io', 'gcr:ido-chatapp') {
               if ("${env.BRANCH_NAME}" =~ 'dev') {
                 img.push("dev-${GIT_COMMIT}") 
