@@ -49,7 +49,7 @@ pipeline{
         }
         stage('E2E') {
           steps {
-            sh './tests.sh ${RETRIES} ${ADDR} ${PORT} f'
+            sh './tests.sh ${RETRIES} ${ADDR} ${PORT}'
           }
           post {
             always{

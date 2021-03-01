@@ -16,11 +16,8 @@ services:
     command: sh -c 'while ! nc -z -v -w 3 db 3306; do sleep 5; done'
 
   app:
-    build:
-      dockerfile: chat.Dockerfile
-      context: .
     container_name: app
-    image: app:0.1
+    image: ${REPO}
     depends_on:
     - wait_db
 
@@ -35,7 +32,7 @@ services:
     depends_on:
     - wait_app
     ports:
-    - "9000:80"
+    - "${PORT}:80"
     volumes:
     - ./web/static:/usr/share/nginx/html
     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
