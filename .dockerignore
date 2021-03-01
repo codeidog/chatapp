@@ -1,0 +1,13 @@
+**/__pycache__*
+**/*.swp
+.git
+.gitignore
+**/venv/
+**/docker-compose.yaml
+**/.env
+**/chatapp.Jenkinsfile
+**/chat.Dockerfile
+**/room.tmp
+**/*.bak
+**/.chatapp.config.json
+f
