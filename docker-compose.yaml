@@ -21,6 +21,8 @@ services:
       context: .
     container_name: app
     image: ${REPO}
+    ports: 
+      - "9000:5000"
     depends_on:
     - wait_db
 
