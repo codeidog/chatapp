@@ -2,7 +2,7 @@ pipeline{
   agent any
 
   environment {
-    REPO = 'gcr.io/devel-final/chatapp'
+    REPO = 'gcr.io/crafty-willow-301509/chatapp'
     RETRIES = 20
     ADDR = 'localhost'
     PORT = 9000
