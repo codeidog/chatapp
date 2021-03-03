@@ -9,7 +9,7 @@ pipeline{
   }
   options { 
     disableConcurrentBuilds() 
-  }
+  } 
   post{
     success{
       echo "========pipeline executed successfully ========"
