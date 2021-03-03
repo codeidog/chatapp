@@ -17,7 +17,7 @@ pipeline{
     failure{
       echo "========pipeline execution failed========"
     }
-  }
+  } 
   stages{
     stage('Version'){
       steps{
