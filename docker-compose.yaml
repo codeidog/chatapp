@@ -9,28 +9,32 @@ services:
       MYSQL_USER: flask
       MYSQL_PASSWORD: 123
       MYSQL_DATABASE: chat
+    ports: 
+      - "3306:3306"
 
-  wait_db:
-    container_name: wait_db
-    image: busybox:1.28
-    command: sh -c 'while ! nc -z -v -w 3 db 3306; do sleep 5; done'
+  # wait_db:
+  #   container_name: wait_db
+  #   image: busybox:1.28
+  #   command: sh -c 'while ! nc -z -v -w 3 db 3306; do sleep 5; done'
 
   app:
     container_name: app
     image: ${REPO}
-    depends_on:
-    - wait_db
+    volumes:
+      - ./secret:/app/secret
+    # depends_on:
+    # - wait_db
 
-  wait_app:
-    container_name: wait_app
-    image: busybox:1.28
-    command: sh -c 'while ! nc -z -v -w 3 app 5000; do sleep 5; done'
+  # wait_app:
+  #   container_name: wait_app
+  #   image: busybox:1.28
+  #   command: sh -c 'while ! nc -z -v -w 3 app 5000; do sleep 5; done'
 
   proxy:
     container_name: proxy
     image: nginx:alpine
-    depends_on:
-    - wait_app
+    # depends_on:
+    # - wait_app
     ports:
     - "${PORT}:80"
     volumes:
