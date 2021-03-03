@@ -19,7 +19,7 @@ username=even_more&msg=test4"
 
 # Wait for connection
 until curl --retry-delay 6 --connect-timeout 5 --max-time 5 --retry 5 \
---silent --fail ${addr}:${port} 1>/dev/null || [ $ret -eq 0 ]; do
+--silent --fail ${addr}:${port}/api/chat 1>/dev/null || [ $ret -eq 0 ]; do
     echo "retries left = $ret"
     sleep 5 
     ret=$((ret-1))
