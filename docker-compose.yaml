@@ -22,6 +22,8 @@ services:
     image: ${REPO}
     volumes:
       - ./secret:/app/secret
+    environment: 
+      - DATABASE_URL=mysql+pymysql://flask:123@db:3306/chat
     # depends_on:
     # - wait_db
 
